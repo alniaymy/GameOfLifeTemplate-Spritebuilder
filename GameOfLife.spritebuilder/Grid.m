@@ -20,17 +20,19 @@ static const int GRID_COLUMNS = 10;
 }
 
 -(void) updateCreatures{
-    
+    int numAlive=0;
     for (int i=0; i<_gridArray.count; i++) {
         for (int j=0; j<[_gridArray[i] count]; j++) {
             Creature *creature=_gridArray[i][j];
             if (creature.livingNeighbors==3) {
                 creature.isAlive=TRUE;
+                numAlive=numAlive+1;
             }else if ((creature.livingNeighbors<=1)||(creature.livingNeighbors>=4)){
                 creature.isAlive=FALSE;
             }
         }
     }
+    _totalAlive=numAlive;
 }
 
 -(void) evolveStep{
