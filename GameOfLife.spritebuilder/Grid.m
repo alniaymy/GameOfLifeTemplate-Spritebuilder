@@ -21,6 +21,16 @@ static const int GRID_COLUMNS = 10;
 
 -(void) updateCreatures{
     
+    for (int i=0; i<_gridArray.count; i++) {
+        for (int j=0; j<[_gridArray[i] count]; j++) {
+            Creature *creature=_gridArray[i][j];
+            if (creature.livingNeighbors==3) {
+                creature.isAlive=TRUE;
+            }else if ((creature.livingNeighbors<=1)||(creature.livingNeighbors>=4)){
+                creature.isAlive=FALSE;
+            }
+        }
+    }
 }
 
 -(void) evolveStep{
